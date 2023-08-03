@@ -19,5 +19,16 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
     overhead_data = []
 
     for row in reader:
-        overhead_data.append([row[0].upper(), float(row[1])])
+        overhead_data.append([row[0].upper(), float(row[1])])# Find the highest overhead manually
+
+def find_highest_overhead(data):
+    highest_overhead = data[0]
+    for overhead in data:
+        if overhead[1] > highest_overhead[1]:
+            highest_overhead = overhead
+    return highest_overhead
+
+os.chdir(original_working_dir)
+
+
 
