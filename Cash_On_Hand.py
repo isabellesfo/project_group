@@ -1,13 +1,16 @@
+# This function imports the relevant functions to help import the csv file from the folder "csv_reports".
 import os
 from pathlib import Path
 import csv
 
+# This stores the current working directory in the variable.
 original_working_dir= os.getcwd()
 
-# Set the current working directory to the folder containing the CSV file
+# This sets the current working directory to the folder containing the CSV file.
 csv_folder= os.path.join(os.getcwd(), "csv_reports")
 os.chdir(csv_folder)
 
+# The variable that stores the name of the csv file, "Cash_On_Hand.csv" that the code will read.
 csv_file= "Cash_On_Hand.csv"
 
 with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
