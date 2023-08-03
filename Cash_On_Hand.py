@@ -37,3 +37,5 @@ def calculate_cash_surplus_deficit(data):
             print(f"[CASH DEFICIT] DAY: {data[i][0]}, AMOUNT: {previous_cash - current_cash}")
 
 os.chdir(original_working_dir)
+
+
