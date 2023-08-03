@@ -29,6 +29,3 @@ def find_highest_overhead(data):
     return highest_overhead
 
 os.chdir(original_working_dir)
-
-
-
