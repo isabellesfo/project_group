@@ -9,7 +9,7 @@ csv_folder = os.path.join(os.getcwd(), "csv_reports")
 os.chdir(csv_folder)
 
 # Now you can open and read the CSV file
-csv_file = "profit_and_loss.csv"
+csv_file = "Profit_And_Loss.csv"
 
 with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
     reader = csv.reader(file)
