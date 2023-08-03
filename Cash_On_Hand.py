@@ -13,8 +13,11 @@ os.chdir(csv_folder)
 # The variable that stores the name of the csv file, "Cash_On_Hand.csv" that the code will read.
 csv_file= "Cash_On_Hand.csv"
 
+# This opens and reads the csv file.
 with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
     reader = csv.reader(file)
+
+# This skips the header row as it contains column names
     next(reader)
 
     cash_data = []
