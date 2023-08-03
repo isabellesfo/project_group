@@ -4,6 +4,7 @@ import csv
 
 original_working_dir= os.getcwd()
 
+# Set the current working directory to the folder containing the CSV file
 csv_folder= os.path.join(os.getcwd(), "csv_reports")
 os.chdir(csv_folder)
 
