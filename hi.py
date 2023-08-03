@@ -1,1 +1,2 @@
-gthbj
+print("hello")
+
