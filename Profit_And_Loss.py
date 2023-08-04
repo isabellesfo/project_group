@@ -1,4 +1,7 @@
+# This line imports the operating system into the file.
 import os
+
+
 from pathlib import Path
 import csv
 
