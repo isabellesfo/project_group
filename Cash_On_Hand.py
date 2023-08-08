@@ -20,7 +20,6 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
     next(reader)
 
 # This assigns an empty list to the variable overhead_data. 
-
     cash_data = []
 
 # This is a loop that will execute the code for each row of data in reader. 
@@ -29,8 +28,7 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
 # This appends the list for the code and creates a new list with a converted integer and float value
         cash_data.append([int(row[0]), float(row[1])])
 
-# Calculate Cash Surplus or Cash Deficit and Find Largest Increment or Deficit
-# Calculate Cash Surplus or Cash Deficit and Find Largest Increment or Deficit
+# This line of code calculates Cash Surplus or Cash Deficit and Find Largest Increment or Deficit
 def calculate_cash_surplus_deficit(data):
     largest_increment = 0
     largest_increment_day = None
