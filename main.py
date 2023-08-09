@@ -13,16 +13,26 @@ print(f"[HIGHEST OVERHEAD] {highest_overhead[0]}: {highest_overhead[1]}%")
 
 # This line will call the function from "cash_on_hand.py"
 calculate_cash_surplus_deficit(cash_data)
+
+# Initialize variables to track the largest increment and largest deficit, along with their corresponding days.
 largest_increment = 0
 largest_increment_day = None
 largest_deficit = 0
 largest_deficit_day = None
 
+# Iterate through the data starting from the second element (index 1).
 for i in range(1, len(cash_data)):   
+
+# Current cash value at index i.
     current_cash = cash_data[i][1]
+
+# Cash value of the previous day.
     previous_cash = cash_data[i - 1][1]
+    
+# Calculate the increment (change) in cash from the previous day to the current day.
     increment = current_cash - previous_cash
 
+# Compare the increment with the largest_deficit value. If it's smaller (negative), update the variables.
     if increment > largest_increment:
             largest_increment = increment
             largest_increment_day = cash_data[i][0]
