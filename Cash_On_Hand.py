@@ -49,15 +49,15 @@ def calculate_cash_surplus_deficit(data):
             largest_deficit_day = data[i][0]
 
         if current_cash > previous_cash:
-            print(f"[CASH SURPLUS] DAY: {data[i][0]}, AMOUNT: USD{increment}")
+            print(f"[CASH SURPLUS] DAY: {data[i][0]}, AMOUNT: USD {increment}")
         elif current_cash < previous_cash:
-            print(f"[CASH DEFICIT] DAY: {data[i][0]}, AMOUNT: USD{-increment}")
+            print(f"[CASH DEFICIT] DAY: {data[i][0]}, AMOUNT: USD {-increment}")
 
     if largest_increment_day is not None:
-        print(f"[LARGEST INCREMENT] DAY: {largest_increment_day}, AMOUNT: USD{largest_increment}")
+        print(f"[LARGEST INCREMENT] DAY: {largest_increment_day}, AMOUNT: USD {largest_increment}")
 
     if largest_deficit_day is not None:
-        print(f"[LARGEST DEFICIT] DAY: {largest_deficit_day}, AMOUNT: USD{-largest_deficit}")
+        print(f"[LARGEST DEFICIT] DAY: {largest_deficit_day}, AMOUNT: USD {-largest_deficit}")
     
 
 # This line changes the directory from the operating system back to the original.
