@@ -38,10 +38,10 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
 # Calculate Profit and Loss for Scenario 1 - Profit Surplus Every day
 def calculate_profit_loss_scenario1(data):
     for day in data:
-        print(f"DAY: {day[0]}, AMOUNT: {day[4]}")
+        print(f"DAY: {day[0]}, AMOUNT: USD {day[4]}")
     highest_profit, highest_day = find_highest_profit_surplus(data)
     if highest_day >= 0:
-        print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {highest_day}, AMOUNT: USD{highest_profit}")
+        print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {highest_day}, AMOUNT: USD {highest_profit}")
     else:
         print("[HIGHEST NET PROFIT SURPLUS] No profit surplus days found.")
 
@@ -49,18 +49,18 @@ def calculate_profit_loss_scenario2(data):
     for day in data:
         daily_net_profit = day[4] - data[day[0] - 1][4] if day[0] > 0 else day[4]
         if daily_net_profit >= 0:
-            print(f"DAY: {day[0]}, AMOUNT: {daily_net_profit}")
+            print(f"[PROFIT SURPLUS] DAY: {day[0]}, AMOUNT: USD {daily_net_profit}")
         else:
-            print(f"DAY: {day[0]}, AMOUNT: {daily_net_profit} [PROFIT DEFICIT]")
+            print(f"[PROFIT DEFICIT] DAY: {day[0]}, AMOUNT: USD {-daily_net_profit}")
 
 def calculate_profit_loss_scenario3(data):
     for day in data:
         daily_net_profit = day[4] - data[day[0] - 1][4] if day[0] > 0 else day[4]
         if daily_net_profit > 0:
-            print(f"[PROFIT SURPLUS] DAY: {day[0]}, AMOUNT: USD{daily_net_profit}")
+            print(f"[PROFIT SURPLUS] DAY: {day[0]}, AMOUNT: USD {daily_net_profit}")
         elif daily_net_profit < 0:
             deficit = -daily_net_profit
-            print(f"[PROFIT DEFICIT] DAY: {day[0]}, AMOUNT: USD{deficit}")
+            print(f"[PROFIT DEFICIT] DAY: {day[0]}, AMOUNT: USD {deficit}")
 
 def find_highest_profit_surplus(data):
     highest_profit = 0
@@ -75,7 +75,6 @@ def find_highest_profit_surplus(data):
     return highest_profit, highest_day
 
 # Call the functions for each scenario and highest net profit surplus
-
 highest_profit_surplus, highest_profit_surplus_day = find_highest_profit_surplus(profit_and_loss)
 
 # This line changes the directory from the operating system back to the original.

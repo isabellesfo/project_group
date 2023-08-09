@@ -5,7 +5,7 @@ from profit_and_loss import (
     profit_and_loss,
     calculate_profit_loss_scenario2,
     calculate_profit_loss_scenario3,
-    find_highest_net_profit_surplus,
+    find_highest_profit_surplus,
 )
 
 # This lines will call the function from "overheads.py"
@@ -21,7 +21,8 @@ calculate_profit_loss_scenario3(profit_and_loss)
 
 # This line will call the function "find_highest_net_profit_surplus" and passes the variable "profit_and_loss" as an argument. 
 # The function is expected to calculate and return the highest net profit surplus. The returned value will be assigned to the variable "highest_net_profit_surplus".
-highest_net_profit_surplus = find_highest_net_profit_surplus(profit_and_loss)
+
+highest_profit_surplus, highest_profit_surplus_day = find_highest_profit_surplus(profit_and_loss)
 
 # This accesses the first element of the last element in "profit_and_loss" and prints the messgae which includes the day from the "profit_and_loss" data and the value of the "highest_net_profit_surplus" variable.
-print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {profit_and_loss[-1][0]}, AMOUNT: USD {highest_net_profit_surplus}")
+print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {highest_profit_surplus_day}, AMOUNT: USD {highest_profit_surplus}")
