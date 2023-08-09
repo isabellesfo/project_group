@@ -36,7 +36,7 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
 # This line of code calculates Cash Surplus or Cash Deficit and Find Largest Increment or Deficit
 def calculate_cash_surplus_deficit(data):
 
-# This line initialize variables to find the largest increment and largest deficit, along with their corresponding days.
+# This line initialise variables to find the largest increment and largest deficit, along with their corresponding days.
     largest_increment = 0
     largest_increment_day = None
     largest_deficit = 0
@@ -79,6 +79,5 @@ def calculate_cash_surplus_deficit(data):
     if largest_deficit_day is not None:
         print(f"[LARGEST DEFICIT] DAY: {largest_deficit_day}, AMOUNT: USD {-largest_deficit}")
     
-
 # This line changes the directory from the operating system back to the original.
 os.chdir(original_working_dir)

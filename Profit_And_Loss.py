@@ -33,49 +33,45 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
 # This appends the list for the code and creates a new list with a converted integer value.
         profit_and_loss.append([int(row[0]), int(row[1]), int(row[2]), int(row[3]), int(row[4])])
 
-# This line defines the function "calculate_profit_loss_scenario1" which takes the argument "data". 
-# This function determines if there is a profit surplus scenario within "data".
-# Calculate Profit and Loss for Scenario 1 - Profit Surplus Every day
-
 # This function calculates the daily net profit and identifies whether it's a surplus or a deficit.
-# It takes a list of data as input, where each entry contains day information and net profit value.
+# It also takes a list of data as input, where each entry contains day information and net profit value.
 def calculate_profit_loss(data):
     for day in data:
-        # Calculate the daily net profit by subtracting the previous day's net profit from the current day's net profit.
+# This code calculates the daily net profit by subtracting the previous day's net profit from the current day's net profit.
         daily_net_profit = day[4] - data[day[0] - 1][4] if day[0] > 0 else day[4]
         
-        # Check if the daily net profit is positive (surplus) or negative (deficit) and print accordingly.
+# This code checks if the daily net profit is positive (surplus) or negative (deficit) and print accordingly.
         if daily_net_profit >= 0:
             print(f"[PROFIT SURPLUS] DAY: {day[0]}, AMOUNT: USD {daily_net_profit}")
         else:
             print(f"[PROFIT DEFICIT] DAY: {day[0]}, AMOUNT: USD {-daily_net_profit}")
 
 # This function finds the highest net profit surplus among the given data.
-# It takes a list of data as input, similar to the calculate_profit_loss function.
+# It also takes a list of data as input, similar to the calculate_profit_loss function.
 def find_highest_profit_surplus(data):
-# Initialize the highest profit to 0.
+# This code initialise the highest profit to 0.
     highest_profit = 0  
 
-# Initialize the day with the highest profit surplus to -1.   
+# This code initialise the day with the highest profit surplus to -1.   
     highest_day = -1       
 
-    # Iterate through each day's data to find the highest profit surplus.
+# This code iterate through each day's data to find the highest profit surplus.
     for day in data:
-        # Calculate the daily net profit by subtracting the previous day's net profit from the current day's net profit.
+
+# This code calculates the daily net profit by subtracting the previous day's net profit from the current day's net profit.
         daily_net_profit = day[4] - data[day[0] - 1][4]
         
-        # Check if the daily net profit is positive (surplus) and higher than the current highest profit.
-        # If so, update the highest profit and the corresponding day.
+# This code checks if the daily net profit is positive and higher than the current highest profit.
+# If it is it updates the highest profit and the corresponding day.
         if daily_net_profit > 0 and daily_net_profit > highest_profit:
             highest_profit = daily_net_profit
             highest_day = day[0]
 
-    # Return the highest profit surplus and the corresponding day.
+# This code returns the highest profit surplus and the corresponding day.
     return highest_profit, highest_day
 
-# Call the find_highest_profit_surplus function with the profit_and_loss data to find the highest profit surplus and its corresponding day.
+# This code calls the find_highest_profit_surplus function with the profit_and_loss data to find the highest profit surplus and its corresponding day.
 highest_profit_surplus, highest_profit_surplus_day = find_highest_profit_surplus(profit_and_loss)
 
 # This line changes the directory from the operating system back to the original.
 os.chdir(original_working_dir)
-
