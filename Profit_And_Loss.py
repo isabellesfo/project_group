@@ -37,77 +37,46 @@ with open(csv_file, mode="r", encoding="UTF-8", newline="") as file:
 # This function determines if there is a profit surplus scenario within "data".
 # Calculate Profit and Loss for Scenario 1 - Profit Surplus Every day
 def calculate_profit_loss_scenario1(data):
-    is_profit_surplus = True
-    highest_net_profit_surplus = 0  # Initialize with zero
+    for day in data:
+        print(f"DAY: {day[0]}, AMOUNT: {day[4]}")
+    highest_profit, highest_day = find_highest_profit_surplus(data)
+    if highest_day >= 0:
+        print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {highest_day}, AMOUNT: USD{highest_profit}")
+    else:
+        print("[HIGHEST NET PROFIT SURPLUS] No profit surplus days found.")
 
-    for i in range(1, len(data)):
-        net_profit_increase = data[i][4] - data[i - 1][4]  # Calculate increase in net profit from the previous day
-        if net_profit_increase <= 0:
-            is_profit_surplus = False
-            break
-
-        if net_profit_increase > highest_net_profit_surplus:
-            highest_net_profit_surplus = net_profit_increase
-
-    if is_profit_surplus:
-  
-        for i in range(len(data)):
-            net_profit = data[i][4]
-            print(f"DAY: {data[i][0]}, AMOUNT: {net_profit}")
-            if i > 0 and data[i][4] > data[i - 1][4]:
-                print("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
-
-        print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {data[-1][0]}, AMOUNT: USD{highest_net_profit_surplus}")
-
-# Calculate Profit and Loss for Scenario 2 - Constant Profit Deficit Every day
 def calculate_profit_loss_scenario2(data):
-    is_profit_deficit = True
-    for day in range(len(data)):
-        net_profit = data[day][4]
-        if net_profit >= 0:
-            is_profit_deficit = False
-            break
+    for day in data:
+        daily_net_profit = day[4] - data[day[0] - 1][4] if day[0] > 0 else day[4]
+        if daily_net_profit >= 0:
+            print(f"DAY: {day[0]}, AMOUNT: {daily_net_profit}")
+        else:
+            print(f"DAY: {day[0]}, AMOUNT: {daily_net_profit} [PROFIT DEFICIT]")
 
-    if is_profit_deficit:
-
-        for day in range(len(data)):
-            deficit = data[day][4] * -1
-            print(f"DAY: {data[day][0]}, AMOUNT: {deficit}")
-
-# Calculate Profit and Loss for Scenario 3 - Fluctuation between Profit Surplus and Profit Deficit
 def calculate_profit_loss_scenario3(data):
-    has_profit_surplus = False
-    has_profit_deficit = False
+    for day in data:
+        daily_net_profit = day[4] - data[day[0] - 1][4] if day[0] > 0 else day[4]
+        if daily_net_profit > 0:
+            print(f"[PROFIT SURPLUS] DAY: {day[0]}, AMOUNT: USD{daily_net_profit}")
+        elif daily_net_profit < 0:
+            deficit = -daily_net_profit
+            print(f"[PROFIT DEFICIT] DAY: {day[0]}, AMOUNT: USD{deficit}")
 
-    for day in range(len(data)):
-        net_profit = data[day][4]
-        if net_profit > 0:
-            has_profit_surplus = True
-        elif net_profit < 0:
-            has_profit_deficit = True
+def find_highest_profit_surplus(data):
+    highest_profit = 0
+    highest_day = -1
 
-    if has_profit_surplus and has_profit_deficit:
+    for day in data:
+        daily_net_profit = day[4] - data[day[0] - 1][4]
+        if daily_net_profit > 0 and daily_net_profit > highest_profit:
+            highest_profit = daily_net_profit
+            highest_day = day[0]
 
-        for day in range(len(data)):
-            net_profit = data[day][4]
-            if net_profit > 0:
-                print(f"[PROFIT SURPLUS] DAY: {data[day][0]}, AMOUNT: USD{net_profit}")
-            elif net_profit < 0:
-                deficit = net_profit * -1
-                print(f"[PROFIT DEFICIT] DAY: {data[day][0]}, AMOUNT: USD{deficit}")
+    return highest_profit, highest_day
 
-# Find Highest Net Profit Surplus
-def find_highest_net_profit_surplus(data):
-    highest_net_profit_surplus = 0  # Initialize with zero
-    for day in range(1, len(data)):
-        net_profit_surplus = data[day][4] - data[day - 1][4]  # Calculate net profit surplus (today's net profit - yesterday's net profit)
-        if net_profit_surplus > highest_net_profit_surplus:
-            highest_net_profit_surplus = net_profit_surplus
-    return highest_net_profit_surplus
+# Call the functions for each scenario and highest net profit surplus
 
-# Calling the functions for each scenario and highest net profit surplus
-
-highest_net_profit_surplus = find_highest_net_profit_surplus(profit_and_loss)
+highest_profit_surplus, highest_profit_surplus_day = find_highest_profit_surplus(profit_and_loss)
 
 # This line changes the directory from the operating system back to the original.
 os.chdir(original_working_dir)
